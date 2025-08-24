@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import DiscountModal from '@/components/dashboard/DiscountModal';
 import { formatPrice } from '@/lib/utils';
 
@@ -164,10 +165,13 @@ export default function DiscountsPage() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-12 w-12">
-                            <img
+                            <Image
                               className="h-12 w-12 rounded-lg object-cover"
                               src={product.images?.[0] || product.image || 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1200'}
                               alt={product.name}
+                              width={48}
+                              height={48}
+                              sizes="48px"
                             />
                           </div>
                           <div className="ml-4">

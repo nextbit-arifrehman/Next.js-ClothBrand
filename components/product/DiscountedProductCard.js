@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PriceDisplay from '@/components/ui/PriceDisplay';
 import DiscountBadge from '@/components/ui/DiscountBadge';
+import Image from 'next/image';
 
 export default function DiscountedProductCard({ product }) {
   const [isInWishlist, setIsInWishlist] = useState(false);
@@ -56,13 +57,12 @@ export default function DiscountedProductCard({ product }) {
     <div className="group cursor-pointer luxe-card-hover">
       <Link href={`/products/${product.id}`}>
         <div className="relative overflow-hidden bg-gray-50 aspect-[3/4] mb-4 rounded-lg">
-          <img
+          <Image
             src={productImage}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            onError={(e) => {
-              e.target.src = defaultImage;
-            }}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
           

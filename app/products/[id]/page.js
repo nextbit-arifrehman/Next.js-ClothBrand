@@ -5,6 +5,7 @@ import { formatPrice } from '@/lib/utils';
 import ProductImages from '@/components/product/ProductImages';
 import PriceDisplay from '@/components/ui/PriceDisplay';
 import DiscountBadge from '@/components/ui/DiscountBadge';
+import Image from 'next/image';
 
 // Generate static params for all products
 export async function generateStaticParams() {
@@ -263,10 +264,13 @@ export default async function ProductDetailsPage({ params }) {
               {relatedProducts.map((relatedProduct) => (
                 <Link key={relatedProduct.id} href={`/products/${relatedProduct.id}`} className="group">
                   <div className="relative overflow-hidden bg-gray-50 aspect-[3/4] mb-4 rounded-lg">
-                    <img
+                    <Image
                       src={relatedProduct.images?.[0] || relatedProduct.image || defaultImage}
                       alt={relatedProduct.name}
+                      width={400}
+                      height={533}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   </div>
                   <h3 className="text-lg font-medium mb-2 group-hover:text-rose-600 transition-colors duration-200 text-gray-900 dark:text-gray-100">

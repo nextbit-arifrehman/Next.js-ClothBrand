@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { formatPrice } from '@/lib/utils';
+import Image from 'next/image';
 
 export default function ProductCard({ product }) {
   const [isInWishlist, setIsInWishlist] = useState(false);
@@ -15,14 +16,7 @@ export default function ProductCard({ product }) {
   let savings = 0;
   let discountPercentage = 0;
 
-  // Debug logging (remove in production)
-  if (product.name === 'Silk Evening Gown' || product.name === 'Italian Leather Heels') {
-    console.log(`ProductCard Debug - ${product.name}:`, {
-      hasDiscount,
-      discount: product.discount,
-      price: product.price
-    });
-  }
+
 
   if (hasDiscount) {
     const discount = product.discount;
@@ -67,13 +61,12 @@ export default function ProductCard({ product }) {
     <div className="group cursor-pointer luxe-card-hover">
       <Link href={`/products/${product.id}`}>
         <div className="relative overflow-hidden bg-gray-50 aspect-[3/4] mb-4 rounded-lg">
-          <img
+          <Image
             src={productImage}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            onError={(e) => {
-              e.target.src = defaultImage;
-            }}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
           

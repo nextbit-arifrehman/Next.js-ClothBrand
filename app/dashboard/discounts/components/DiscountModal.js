@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function DiscountModal({ product, onClose, onSave }) {
   const [formData, setFormData] = useState({
@@ -37,11 +38,11 @@ export default function DiscountModal({ product, onClose, onSave }) {
   // Calculate preview price whenever form data changes
   useEffect(() => {
     calculatePreviewPrice();
-  }, [formData.discountType, formData.discountValue]);
+  });
 
   const calculatePreviewPrice = () => {
     const discountValue = parseFloat(formData.discountValue);
-    
+
     if (!discountValue || discountValue <= 0) {
       setPreviewPrice(product.price);
       setSavings(0);
@@ -76,7 +77,7 @@ export default function DiscountModal({ product, onClose, onSave }) {
 
   const validateForm = () => {
     const discountValue = parseFloat(formData.discountValue);
-    
+
     if (!discountValue || discountValue <= 0) {
       return 'Discount value must be greater than 0';
     }
@@ -92,7 +93,7 @@ export default function DiscountModal({ product, onClose, onSave }) {
     if (formData.startDate && formData.endDate) {
       const startDate = new Date(formData.startDate);
       const endDate = new Date(formData.endDate);
-      
+
       if (endDate <= startDate) {
         return 'End date must be after start date';
       }
@@ -103,7 +104,7 @@ export default function DiscountModal({ product, onClose, onSave }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const validationError = validateForm();
     if (validationError) {
       setError(validationError);
@@ -123,7 +124,7 @@ export default function DiscountModal({ product, onClose, onSave }) {
       };
 
       const method = product.discount && product.discount.isActive ? 'PUT' : 'POST';
-      const url = product.discount && product.discount.isActive 
+      const url = product.discount && product.discount.isActive
         ? `/api/admin/discounts/${product.discount.id}`
         : '/api/admin/discounts';
 
@@ -204,10 +205,13 @@ export default function DiscountModal({ product, onClose, onSave }) {
           <div className="mb-6 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
             <div className="flex items-center">
               {product.images && product.images.length > 0 ? (
-                <img
+                <Image
                   className="h-12 w-12 rounded-lg object-cover"
                   src={product.images[0]}
                   alt={product.name}
+                  width={48}
+                  height={48}
+                  sizes="48px"
                 />
               ) : (
                 <div className="h-12 w-12 rounded-lg bg-gray-200 dark:bg-gray-600 flex items-center justify-center">
@@ -286,9 +290,8 @@ export default function DiscountModal({ product, onClose, onSave }) {
                   step={formData.discountType === 'flat' ? '0.01' : '1'}
                   min="0"
                   max={formData.discountType === 'percentage' ? '99' : undefined}
-                  className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 ${
-                    formData.discountType === 'flat' ? 'pl-7' : ''
-                  }`}
+                  className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 ${formData.discountType === 'flat' ? 'pl-7' : ''
+                    }`}
                   placeholder={formData.discountType === 'percentage' ? '10' : '10.00'}
                 />
                 {formData.discountType === 'percentage' && (
@@ -365,7 +368,7 @@ export default function DiscountModal({ product, onClose, onSave }) {
               >
                 {loading ? 'Saving...' : (product.discount && product.discount.isActive ? 'Update Discount' : 'Apply Discount')}
               </button>
-              
+
               {product.discount && product.discount.isActive && (
                 <button
                   type="button"
@@ -376,7 +379,7 @@ export default function DiscountModal({ product, onClose, onSave }) {
                   Remove
                 </button>
               )}
-              
+
               <button
                 type="button"
                 onClick={onClose}

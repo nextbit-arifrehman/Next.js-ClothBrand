@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function FeaturedProducts() {
   const { data: session, status } = useSession();
@@ -150,10 +151,13 @@ export default function FeaturedProducts() {
               {featuredProducts.map((product) => (
                 <div key={product.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
                   <div className="aspect-[4/3] bg-gray-100 dark:bg-gray-700">
-                    <img
+                    <Image
                       src={product.images?.[0] || product.image || 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600'}
                       alt={product.name}
+                      width={800}
+                      height={600}
                       className="w-full h-full object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
                   <div className="p-4">
@@ -186,10 +190,13 @@ export default function FeaturedProducts() {
             {products.map((product) => (
               <div key={product.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
                 <div className="aspect-[4/3] bg-gray-100 dark:bg-gray-700 relative">
-                  <img
+                  <Image
                     src={product.images?.[0] || product.image || 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600'}
                     alt={product.name}
+                    width={800}
+                    height={600}
                     className="w-full h-full object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   {product.featured && (
                     <div className="absolute top-2 right-2">

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ProductModel } from '@/lib/models';
 import { formatPrice } from '@/lib/utils';
 
@@ -30,7 +31,7 @@ export default async function DiscountSection() {
             Limited Time Offers
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Don't miss out on these exclusive discounts. Premium fashion at unbeatable prices, but only for a limited time.
+            Don&apos;t miss out on these exclusive discounts. Premium fashion at unbeatable prices, but only for a limited time.
           </p>
         </div>
 
@@ -63,10 +64,13 @@ export default async function DiscountSection() {
               <div key={product.id} className="group cursor-pointer">
                 <Link href={`/products/${product.id}`}>
                   <div className="relative overflow-hidden bg-gray-50 aspect-[3/4] mb-4 rounded-lg">
-                    <img
+                    <Image
                       src={productImage}
                       alt={product.name}
+                      width={400}
+                      height={533}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                     

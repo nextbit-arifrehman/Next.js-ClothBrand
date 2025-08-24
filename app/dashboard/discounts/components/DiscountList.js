@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import DiscountModal from './DiscountModal';
+import Image from 'next/image';
 
 export default function DiscountList({ products, onDiscountUpdate }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -31,25 +32,25 @@ export default function DiscountList({ products, onDiscountUpdate }) {
 
   const calculateDiscountedPrice = (originalPrice, discount) => {
     if (!discount) return originalPrice;
-    
+
     if (discount.discountType === 'flat') {
       return Math.max(0, originalPrice - discount.discountValue);
     } else if (discount.discountType === 'percentage') {
       return originalPrice - (originalPrice * discount.discountValue / 100);
     }
-    
+
     return originalPrice;
   };
 
   const getDiscountDisplay = (discount) => {
     if (!discount) return null;
-    
+
     if (discount.discountType === 'flat') {
       return `-${formatPrice(discount.discountValue)}`;
     } else if (discount.discountType === 'percentage') {
       return `-${discount.discountValue}%`;
     }
-    
+
     return null;
   };
 
@@ -74,7 +75,7 @@ export default function DiscountList({ products, onDiscountUpdate }) {
           Product Discount Management
         </h2>
         <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-          Click "Manage Discount" to set up promotional pricing for any product.
+          Click &quot;Manage Discount&quot; to set up promotional pricing for any product.
         </p>
       </div>
 
@@ -114,10 +115,13 @@ export default function DiscountList({ products, onDiscountUpdate }) {
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10">
                         {product.images && product.images.length > 0 ? (
-                          <img
+                          <Image
                             className="h-10 w-10 rounded-lg object-cover"
                             src={product.images[0]}
                             alt={product.name}
+                            width={40}
+                            height={40}
+                            sizes="40px"
                           />
                         ) : (
                           <div className="h-10 w-10 rounded-lg bg-gray-200 dark:bg-gray-600 flex items-center justify-center">

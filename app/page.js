@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { formatPrice } from '@/lib/utils';
 import { ProductModel } from '@/lib/models';
 import ProductCard from '@/components/product/ProductCard';
@@ -91,7 +92,7 @@ export default async function Home() {
                   Collection Coming Soon
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  We're curating our luxury fashion collection. Check back soon for exclusive pieces!
+                  We&apos;re curating our luxury fashion collection. Check back soon for exclusive pieces!
                 </p>
                 {/* <Link
                   // href="/api/seed"
@@ -127,10 +128,12 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             <Link href="/collections/dresses" className="group">
               <div className="relative overflow-hidden rounded-lg aspect-[4/5] bg-gray-200">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"
                   alt="Dresses Collection"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
                 <div className="absolute bottom-6 left-6 text-white">
@@ -142,10 +145,13 @@ export default async function Home() {
 
             <Link href="/collections/accessories" className="group">
               <div className="relative overflow-hidden rounded-lg aspect-[4/5] bg-gray-200">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"
                   alt="Accessories Collection"
+                  width={800}
+                  height={1000}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
                 <div className="absolute bottom-6 left-6 text-white">
@@ -157,10 +163,13 @@ export default async function Home() {
 
             <Link href="/collections/jewelry" className="group">
               <div className="relative overflow-hidden rounded-lg aspect-[4/5] bg-gray-200">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"
                   alt="Jewelry Collection"
+                  width={800}
+                  height={1000}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
                 <div className="absolute bottom-6 left-6 text-white">
@@ -198,10 +207,10 @@ export default async function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h2 className="text-4xl font-light tracking-wide mb-6 text-gray-900 dark:text-gray-100">
-                Crafting Tomorrow's Heritage
+                Crafting Tomorrow&apos;s Heritage
               </h2>
               <p className="text-gray-600 dark:text-gray-400 text-lg mb-6 leading-relaxed">
-                At LUXE, we believe fashion is more than clothing—it's an expression of identity, a statement of values, and a bridge between tradition and innovation.
+                At LUXE, we believe fashion is more than clothing—it&apos;s an expression of identity, a statement of values, and a bridge between tradition and innovation.
               </p>
               <p className="text-gray-600 dark:text-gray-400 text-lg mb-8 leading-relaxed">
                 From our atelier to your wardrobe, every garment tells a story of meticulous craftsmanship, sustainable practices, and an unwavering commitment to quality.
@@ -209,10 +218,13 @@ export default async function Home() {
               <StoryButton />
             </div>
             <div className="order-1 lg:order-2">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"
                 alt="Fashion brand lifestyle photography"
+                width={800}
+                height={500}
                 className="w-full h-[500px] object-cover rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 800px"
               />
             </div>
           </div>

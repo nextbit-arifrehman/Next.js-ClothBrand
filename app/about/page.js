@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AboutPage() {
   return (
@@ -40,10 +41,13 @@ export default function AboutPage() {
             {/* Right Side - Image */}
             <div className="order-1 lg:order-2">
               <div className="relative">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"
                   alt="Luxe Fashion Store Interior"
+                  width={800}
+                  height={600}
                   className="w-full h-[600px] object-cover rounded-lg shadow-lg"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 800px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
               </div>
@@ -67,7 +71,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Women's Sizing */}
             <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-              <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-6">Women's Sizing</h3>
+              <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-6">Women&apos;s Sizing</h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -275,7 +279,7 @@ export default function AboutPage() {
                 How do I know if an item will fit me?
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                We provide detailed size charts for each product, and our customer service team is available to help with sizing questions. We also offer free exchanges if the size isn't quite right.
+                We provide detailed size charts for each product, and our customer service team is available to help with sizing questions. We also offer free exchanges if the size isn&apos;t quite right.
               </p>
             </div>
 
@@ -305,7 +309,7 @@ export default function AboutPage() {
                 How can I track my order?
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Once your order ships, you'll receive a tracking number via email. You can use this number to track your package on our website or the carrier's website. You can also check your order status in your account dashboard.
+                Once your order ships, you&apos;ll receive a tracking number via email. You can use this number to track your package on our website or the carrier&apos;s website. You can also check your order status in your account dashboard.
               </p>
             </div>
 
@@ -340,7 +344,7 @@ export default function AboutPage() {
               Get in Touch
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              We're here to help with any questions or concerns you may have
+              We&apos;re here to help with any questions or concerns you may have
             </p>
           </div>
 

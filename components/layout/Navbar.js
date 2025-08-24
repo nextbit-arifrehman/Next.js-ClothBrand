@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useSession, signOut } from 'next-auth/react';
 import { useState } from 'react';
 import ThemeToggle from '@/components/ui/ThemeToggle';
@@ -62,10 +63,13 @@ export default function Navbar() {
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
                     {session.user.image && (
-                      <img
+                      <Image
                         src={session.user.image}
                         alt={session.user.name || 'User'}
+                        width={32}
+                        height={32}
                         className="w-8 h-8 rounded-full"
+                        sizes="32px"
                       />
                     )}
                     <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
@@ -146,10 +150,13 @@ export default function Navbar() {
                   <div className="space-y-2">
                     <div className="flex items-center px-3 py-2">
                       {session.user.image && (
-                        <img
+                        <Image
                           src={session.user.image}
                           alt={session.user.name || 'User'}
+                          width={32}
+                          height={32}
                           className="w-8 h-8 rounded-full mr-3"
+                          sizes="32px"
                         />
                       )}
                       <span className="text-base font-medium text-gray-900 dark:text-gray-100">

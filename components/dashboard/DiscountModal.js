@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { formatPrice } from '@/lib/utils';
 
 export default function DiscountModal({ product, onClose }) {
@@ -40,7 +41,7 @@ export default function DiscountModal({ product, onClose }) {
   useEffect(() => {
     // Calculate preview price whenever form data changes
     calculatePreview();
-  }, [formData.discountType, formData.discountValue]);
+  });
 
   const calculatePreview = () => {
     const value = parseFloat(formData.discountValue);
@@ -76,7 +77,7 @@ export default function DiscountModal({ product, onClose }) {
 
   const validateForm = () => {
     const value = parseFloat(formData.discountValue);
-    
+
     if (!value || value <= 0) {
       setError('Discount value must be greater than 0');
       return false;
@@ -102,7 +103,7 @@ export default function DiscountModal({ product, onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -120,7 +121,7 @@ export default function DiscountModal({ product, onClose }) {
       };
 
       let response;
-      
+
       if (isEditing && existingDiscountId) {
         // Update existing discount
         response = await fetch(`/api/admin/discounts/${existingDiscountId}`, {
@@ -203,10 +204,13 @@ export default function DiscountModal({ product, onClose }) {
           {/* Product Info */}
           <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
             <div className="flex items-center space-x-3">
-              <img
+              <Image
                 src={product.images?.[0] || product.image || 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1200'}
                 alt={product.name}
+                width={48}
+                height={48}
                 className="w-12 h-12 rounded-lg object-cover"
+                sizes="48px"
               />
               <div>
                 <h3 className="font-medium text-gray-900 dark:text-gray-100">{product.name}</h3>
@@ -344,7 +348,7 @@ export default function DiscountModal({ product, onClose }) {
               >
                 {loading ? 'Saving...' : (isEditing ? 'Update Discount' : 'Create Discount')}
               </button>
-              
+
               {isEditing && (
                 <button
                   type="button"
@@ -355,7 +359,7 @@ export default function DiscountModal({ product, onClose }) {
                   Remove
                 </button>
               )}
-              
+
               <button
                 type="button"
                 onClick={onClose}
