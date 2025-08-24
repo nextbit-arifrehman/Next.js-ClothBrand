@@ -2,8 +2,16 @@ import { NextResponse } from 'next/server';
 import { ProductModel } from '@/lib/models';
 
 // GET /api/products/category/[category] - Fetch products by category
-export async function GET(request, { params }) {
+export async function GET(request, { params } = {}) {
   try {
+    // Validate params
+    if (!params?.category) {
+      return NextResponse.json(
+        { error: 'Invalid category' },
+        { status: 400 }
+      );
+    }
+
     const { category } = params;
     const { searchParams } = new URL(request.url);
     const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')) : null;

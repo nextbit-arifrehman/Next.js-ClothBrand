@@ -5,8 +5,16 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 
 // GET /api/products/[id] - Fetch single product
-export async function GET(request, { params }) {
+export async function GET(request, { params } = {}) {
   try {
+    // Validate params
+    if (!params?.id) {
+      return NextResponse.json(
+        { error: 'Invalid product ID' },
+        { status: 400 }
+      );
+    }
+
     const { id } = params;
     const product = await ProductModel.findById(id);
     
@@ -28,8 +36,16 @@ export async function GET(request, { params }) {
 }
 
 // PUT /api/products/[id] - Update product (protected)
-export async function PUT(request, { params }) {
+export async function PUT(request, { params } = {}) {
   try {
+    // Validate params
+    if (!params?.id) {
+      return NextResponse.json(
+        { error: 'Invalid product ID' },
+        { status: 400 }
+      );
+    }
+
     // Check authentication
     const session = await getServerSession(authOptions);
     if (!session) {
@@ -77,8 +93,16 @@ export async function PUT(request, { params }) {
 }
 
 // PATCH /api/products/[id] - Partial update product (protected)
-export async function PATCH(request, { params }) {
+export async function PATCH(request, { params } = {}) {
   try {
+    // Validate params
+    if (!params?.id) {
+      return NextResponse.json(
+        { error: 'Invalid product ID' },
+        { status: 400 }
+      );
+    }
+
     // Check authentication
     const session = await getServerSession(authOptions);
     if (!session) {
@@ -135,8 +159,16 @@ export async function PATCH(request, { params }) {
 }
 
 // DELETE /api/products/[id] - Delete product (protected)
-export async function DELETE(request, { params }) {
+export async function DELETE(request, { params } = {}) {
   try {
+    // Validate params
+    if (!params?.id) {
+      return NextResponse.json(
+        { error: 'Invalid product ID' },
+        { status: 400 }
+      );
+    }
+
     // Check authentication
     const session = await getServerSession(authOptions);
     if (!session) {

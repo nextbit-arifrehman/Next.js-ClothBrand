@@ -4,8 +4,16 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 
 // PUT /api/admin/discounts/[id] - Update existing discount
-export async function PUT(request, { params }) {
+export async function PUT(request, { params } = {}) {
   try {
+    // Validate params early
+    if (!params?.id) {
+      return NextResponse.json(
+        { error: 'Invalid discount ID' },
+        { status: 400 }
+      );
+    }
+
     // Check authentication
     const session = await getServerSession(authOptions);
     if (!session) {
@@ -76,8 +84,16 @@ export async function PUT(request, { params }) {
 }
 
 // DELETE /api/admin/discounts/[id] - Remove discount
-export async function DELETE(request, { params }) {
+export async function DELETE(request, { params } = {}) {
   try {
+    // Validate params early
+    if (!params?.id) {
+      return NextResponse.json(
+        { error: 'Invalid discount ID' },
+        { status: 400 }
+      );
+    }
+
     // Check authentication
     const session = await getServerSession(authOptions);
     if (!session) {
