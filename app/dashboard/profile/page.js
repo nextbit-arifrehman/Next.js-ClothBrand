@@ -3,6 +3,9 @@ import { authOptions } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default async function Profile() {
   const session = await getServerSession(authOptions);
 

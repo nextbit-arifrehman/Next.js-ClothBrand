@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { ProductModel } from '@/lib/models';
 import ProductCard from '@/components/product/ProductCard';
 
+// Force dynamic rendering for searchParams
+export const dynamic = 'force-dynamic';
+
 // Fetch products with discount information on the server
 async function getProducts(category = null) {
   try {

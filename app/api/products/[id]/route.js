@@ -3,10 +3,12 @@ import { ProductModel } from '@/lib/models';
 import { validateProductData } from '@/lib/utils';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
+export const dynamic = "force-dynamic"; 
 
 // GET /api/products/[id] - Fetch single product
-export async function GET(request, { params } = {}) {
+export async function GET(request, context) {
   try {
+    const params = context?.params || {};
     // Validate params
     if (!params?.id) {
       return NextResponse.json(
@@ -36,8 +38,9 @@ export async function GET(request, { params } = {}) {
 }
 
 // PUT /api/products/[id] - Update product (protected)
-export async function PUT(request, { params } = {}) {
+export async function PUT(request, context) {
   try {
+    const params = context?.params || {};
     // Validate params
     if (!params?.id) {
       return NextResponse.json(
@@ -93,8 +96,9 @@ export async function PUT(request, { params } = {}) {
 }
 
 // PATCH /api/products/[id] - Partial update product (protected)
-export async function PATCH(request, { params } = {}) {
+export async function PATCH(request, context) {
   try {
+    const params = context?.params || {};
     // Validate params
     if (!params?.id) {
       return NextResponse.json(
@@ -159,8 +163,9 @@ export async function PATCH(request, { params } = {}) {
 }
 
 // DELETE /api/products/[id] - Delete product (protected)
-export async function DELETE(request, { params } = {}) {
+export async function DELETE(request, context) {
   try {
+    const params = context?.params || {};
     // Validate params
     if (!params?.id) {
       return NextResponse.json(

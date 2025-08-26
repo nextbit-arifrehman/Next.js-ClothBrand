@@ -3,6 +3,7 @@ import { ProductModel } from '@/lib/models';
 import { validateProductData } from '@/lib/utils';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
+export const dynamic = "force-dynamic"; 
 
 // GET /api/products - Fetch all products
 export async function GET() {

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { ProductModel } from '@/lib/models';
+export const dynamic = "force-dynamic"; 
 
 // GET /api/categories - Fetch all categories
 export async function GET() {

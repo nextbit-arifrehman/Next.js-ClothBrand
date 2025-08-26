@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
 import { ProductModel } from '@/lib/models';
+export const dynamic = "force-dynamic"; 
 
 // GET /api/products/category/[category] - Fetch products by category
-export async function GET(request, { params } = {}) {
+export async function GET(request, context) {
   try {
+    const params = context?.params || {};
     // Validate params
     if (!params?.category) {
       return NextResponse.json(

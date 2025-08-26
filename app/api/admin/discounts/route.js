@@ -3,6 +3,10 @@ import { DiscountModel, ProductModel } from '@/lib/models';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 
+export const dynamic = "force-dynamic";
+
+
+
 // GET /api/admin/discounts - List all products with discount information
 export async function GET() {
   try {
@@ -16,8 +20,14 @@ export async function GET() {
     }
 
     // Get all products with their discount information
-    const products = await ProductModel.findWithDiscounts();
-    return NextResponse.json(products);
+    try {
+      const products = await ProductModel.findWithDiscounts();
+      return NextResponse.json(products);
+    } catch (dbError) {
+      console.error('Database error in discount route:', dbError);
+      // Return empty array if database is not available during build
+      return NextResponse.json([]);
+    }
   } catch (error) {
     console.error('Error fetching products with discounts:', error);
     return NextResponse.json(
